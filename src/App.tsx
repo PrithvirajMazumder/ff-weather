@@ -1,17 +1,22 @@
-import { useState } from 'react'
+import { MainLayout } from './layouts/MainLayout.tsx'
+import { HeroWeather } from './components/HeroWeather.tsx'
+import { CurrentPrecipitaion } from './components/CurrentPrecipitaion.tsx'
+import { CurrentFeelsLike } from './components/CurrentFeelsLike.tsx'
+import { Sunset } from './components/Sunset.tsx'
+import { Sunrise } from './components/Sunrise.tsx'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export function App() {
   return (
-    <div className="w-[100svw] h-[100svh] flex flex-col justify-center items-center bg-base-300">
-      <h1 className="text-2xl">Count: {count}</h1>
-      <button className="btn btn-primary" onClick={() => {
-        setCount(count + 1)
-      }}>Increment
-      </button>
-    </div>
+    <MainLayout>
+      <HeroWeather />
+      <div className="flex items-center w-full gap-4">
+        <CurrentFeelsLike />
+        <CurrentPrecipitaion />
+        <div className="flex items-start gap-4">
+          <Sunset />
+          <Sunrise />
+        </div>
+      </div>
+    </MainLayout>
   )
 }
-
-export default App
