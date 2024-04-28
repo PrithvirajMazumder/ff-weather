@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const BASE_URL = 'https://api.weatherapi.com/v1'
-const ENDPOINT = 'current.json'
+const ENDPOINT = 'forecast.json'
 const API_KEY = import.meta.env.VITE_API_KEY
 
 export const useFetchWeather = () => {

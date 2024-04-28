@@ -22,14 +22,17 @@ export function App() {
     <MainLayout onSearch={(locationName) => setLocationName(locationName)}>
       {weatherInfo && (
         <>
-          <HeroWeather />
+          {isLoading && <progress className="progress w-full progress-primary"></progress>}
+          <HeroWeather
+            locationName={weatherInfo?.location?.name}
+            temp={weatherInfo?.current?.temp_c}
+            condition={weatherInfo?.current?.condition?.text}
+          />
           <div className="flex items-center w-full gap-4">
-            <CurrentFeelsLike />
-            <CurrentPrecipitaion />
-            <div className="flex items-start gap-4">
-              <Sunset />
-              <Sunrise />
-            </div>
+            <CurrentFeelsLike temp={weatherInfo?.current?.feelslike_c} />
+            <CurrentPrecipitaion mm={weatherInfo?.current?.precip_mm} />
+            <Sunset time={weatherInfo?.forecast?.forecastday[0]?.astro?.sunset} />
+            <Sunrise time={weatherInfo?.forecast?.forecastday[0]?.astro?.sunrise} />
           </div>
         </>
       )}
